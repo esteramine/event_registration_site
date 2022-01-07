@@ -5,8 +5,11 @@ module.exports = gql`
         id: ID!
         title: String!
         description: String
+        eventCode: String!
+        authCode: String
         createdAt: String!
         organizer: String
+        restriction: [String]
     }
     type User {
         id: ID!
@@ -25,11 +28,20 @@ module.exports = gql`
         userId: String!
         password: String!
     }
+    input EventInput {
+        title: String!
+        description: String
+        authCode: String
+        restriction: [String]
+    }
     type Query {
         getEvents: [Event]
+        getEvent(eventCode: String!): Event
     }
     type Mutation {
         register(registerInput: RegisterInput): User!
         login(loginInput: LoginInput): User!
+        createEvent(eventInput: EventInput): Event!
+        deleteEvent(eventId: ID!): String!
     }
 `;
