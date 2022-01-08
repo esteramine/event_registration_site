@@ -1,6 +1,15 @@
 const gql = require('graphql-tag');
 
 module.exports = gql`
+    type Organizer {
+        userId: String!
+        name: String!
+    }
+    type Participant {
+        userId: String!
+        name: String!
+        createdAt: String!
+    }
     type Event {
         id: ID!
         title: String!
@@ -9,8 +18,10 @@ module.exports = gql`
         authCode: String
         eventTime: String!
         createdAt: String!
-        organizer: String
+        organizer: Organizer!
         restrictions: [String]
+        participants: [Participant]
+        participantCount: String!
     }
     type User {
         id: ID!

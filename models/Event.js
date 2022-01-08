@@ -13,10 +13,15 @@ const eventSchema = new Schema({
             createdAt: String
         }
     ],
+    participantCount: String,
     createdAt: String,
+    // organizer: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
     organizer: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        userId: { type: String },
+        name: { type: String }
     },
     restrictions: [String]
 });

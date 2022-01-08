@@ -45,7 +45,7 @@ module.exports = {
                 eventTime,
                 participants: [],
                 createdAt: new Date().toISOString(),
-                organizer: user.id,
+                organizer: { userId: user.userId, name: user.name },
                 restrictions
             });
             const event = await newEvent.save();
@@ -62,7 +62,7 @@ module.exports = {
 
             //only the user himself/herself can delete his/her post
             try {
-                const event = await Event.findById(eventId).populate('organizer');
+                const event = await Event.findById(eventId);
                 if (event) {
                     if (event.organizer.userId == user.userId) {
                         await event.delete();
