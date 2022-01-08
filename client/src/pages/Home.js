@@ -1,12 +1,23 @@
+import { useContext } from "react";
 import Main from "../components/Main";
 import Sidebar from "../components/Sidebar";
+import { AuthContext } from '../context/auth';
 
 function Home() {
+    const { user } = useContext(AuthContext);
+    console.log(user);
     return (
-        <div className="flex">
-            <Sidebar />
-            <Main />
-        </div>
+        <>
+            {
+                user ? (
+                    <div className="flex">
+                        <Sidebar />
+                        <Main />
+                    </div>
+                ): (<Main />) 
+            }
+        </>
+
     )
 }
 

@@ -1,12 +1,14 @@
 import gql from "graphql-tag";
 import { useMutation } from '@apollo/client';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from '../utils/hooks';
+import { AuthContext } from '../context/auth';
 
 function LoginCard() {
     const navigate = useNavigate();
+    const context = useContext(AuthContext);
     const [errors, setErrors] = useState({});
 
     const { onChange, onSubmit, values } = useForm(loginUserCallback, {
@@ -16,6 +18,7 @@ function LoginCard() {
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(_, result) {
+            context.login(result.data.login);
             navigate('/');
         },
         onError(err) {
