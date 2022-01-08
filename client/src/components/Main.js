@@ -5,7 +5,11 @@ import EventCard from "./EventCard";
 import Searchbar from "./Searchbar";
 
 function Main() {
-    const { loading, data: { getEvents: events } } = useQuery(FETCH_EVENTS_QUERY);
+    const { loading, data } = useQuery(FETCH_EVENTS_QUERY);
+    var events;
+    if (data) {
+        events = data.getEvents;
+    }
     
     // TODO: filter out expired events
     // TODO: add loading progress bar 
