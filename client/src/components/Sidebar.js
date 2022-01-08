@@ -16,7 +16,8 @@ const Divider = () => <hr className="sidebar-hr" />;
 
 function Sidebar() {
     return (
-        <div className="fixed top-0 left-0 h-screen w-16 flex flex-col bg-white shadow-lg">
+        <div className=" h-screen p-2 flex flex-col bg-white shadow-2xl z-10"> 
+            {/* fixed top-0 left-0 */}
             <SidebarIcon icon={ <AiFillHome size="24" />} text='Home'/>
             <Divider />
             <SidebarIcon icon={ <BsFillCalendar2EventFill size="20" />} text='Event Manager'/>
