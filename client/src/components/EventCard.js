@@ -3,7 +3,7 @@ import { CgProfile } from 'react-icons/cg';
 
 function EventCard() {
     return (
-        <div className="bg-white rounded-md p-4 max-w-xs flex flex-col space-y-1 text-gray-700 shadow-md hover:shadow-2xl transition-all duration-150 ease-linear cursor-pointer">
+        <div className="bg-white rounded-md p-4 m-2 max-w-xs flex flex-col space-y-1 text-gray-700 shadow-md hover:shadow-2xl transition-all duration-150 ease-linear cursor-pointer">
             {/* Access Scope */}
             <div className='w-[100px]'>
                 <div className="flex bg-green-200 items-center p-[2px] space-x-1 rounded-sm text-green-700 text-xs">
