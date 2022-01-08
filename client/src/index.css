@@ -21,4 +21,19 @@
     border border-gray-200 rounded-full
     mx-2;
   }
+
+  .register-input {
+    @apply min-w-max p-2 text-sm text-white rounded-md shadow-inner
+    bg-gray-200 hover:bg-gray-50 
+    focus:outline-none focus:bg-gray-100 focus:text-gray-900  
+    placeholder-gray-500 
+    transition-all duration-300 ease-linear;
+  }
+
+  .register-button {
+    @apply py-3 my-3 rounded-md flex items-center justify-center font-bold
+    hover:bg-gray-400 hover:text-green-600 
+    bg-green-600 text-white
+    transition-all duration-300 ease-linear cursor-pointer;
+  }
 }
