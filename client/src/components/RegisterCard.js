@@ -93,7 +93,7 @@ function RegisterCard() {
 
                             <div className="flex items-center justify-center space-x-1 text-sm text-gray-500">
                                 <div>Already have an account?</div>
-                                <div className="hover:text-gray-700 text-green-600 cursor-pointer">Sign In</div>
+                                <div className="hover:text-gray-700 text-green-600 cursor-pointer" onClick={() => navigate('/login', { replace: true })}>Sign In</div>
                             </div>
                         </div>
 

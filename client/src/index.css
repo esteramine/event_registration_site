@@ -23,7 +23,7 @@
   }
 
   .register-input {
-    @apply min-w-max p-2 text-sm text-green-600 rounded-md shadow-inner
+    @apply min-w-max p-2 text-sm font-bold text-green-600 rounded-md shadow-inner
     bg-gray-200 hover:bg-gray-50 
     focus:outline-none focus:bg-gray-100 focus:text-green-600  
     placeholder-gray-500 
@@ -31,7 +31,7 @@
   }
 
   .register-input-error {
-    @apply bg-red-100 text-red-600 min-w-max p-2 text-sm rounded-md shadow-inner
+    @apply bg-red-100 text-red-600 min-w-max p-2 text-sm font-bold rounded-md shadow-inner
     hover:bg-red-200 border border-red-600
     focus:outline-none   
     placeholder-gray-500 
@@ -40,9 +40,9 @@
 
   .register-button {
     @apply py-3 my-3 rounded-md flex items-center justify-center font-bold
-    hover:bg-gray-400 hover:text-green-600 
+    hover:bg-gray-700 hover:text-green-600 
     bg-green-600 text-white
-    transition-all duration-300 ease-linear cursor-pointer;
+    transition-all duration-500 ease-linear cursor-pointer;
   }
 
 }
