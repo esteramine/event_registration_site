@@ -25,10 +25,10 @@ function Sidebar() {
     return (
         <div className=" h-screen p-2 flex flex-col bg-white shadow-2xl z-10"> 
             {/* fixed top-0 left-0 */}
-            <SidebarIcon icon={ <AiFillHome size="24" />} text='Home' onClick={() => navigate('/')}/>
+            <SidebarIcon icon={ <AiFillHome size="24" />} text='Home' onClick={() => navigate('/', { replace: true })}/>
             <Divider />
             <SidebarIcon icon={ <BsFillCalendar2EventFill size="20" />} text='Event Manager'/>
-            <SidebarIcon icon={ <BsPlus size="28" />} text={'Add Event'}/>
+            <SidebarIcon icon={ <BsPlus size="28" />} text={'Add Event'} onClick={() => navigate('/addevent', { replace: true })}/>
             <Divider />
             <SidebarIcon icon={ <BiLogOut size="24" />} text='Log out' onClick={logout}/>  
         </div>
