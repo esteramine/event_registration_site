@@ -5,19 +5,18 @@ const eventSchema = new Schema({
     description: String,
     eventCode: String,
     authCode: String,
+    eventTime: String,
     participants: [
         {
-            participant: {
-                type: Schema.Types.ObjectId,
-                ref: 'users'
-            },
+            userId: String,
+            name: String,
             createdAt: String
         }
     ],
     createdAt: String,
     organizer: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
     },
     restrictions: [String]
 });

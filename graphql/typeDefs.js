@@ -7,9 +7,10 @@ module.exports = gql`
         description: String
         eventCode: String!
         authCode: String
+        eventTime: String!
         createdAt: String!
         organizer: String
-        restriction: [String]
+        restrictions: [String]
     }
     type User {
         id: ID!
@@ -30,9 +31,10 @@ module.exports = gql`
     }
     input EventInput {
         title: String!
-        description: String
-        authCode: String
-        restriction: [String]
+        description: String!
+        authCode: String!
+        eventTime: String!
+        restrictions: [String]
     }
     type Query {
         getEvents: [Event]
@@ -43,5 +45,8 @@ module.exports = gql`
         login(loginInput: LoginInput): User!
         createEvent(eventInput: EventInput): Event!
         deleteEvent(eventId: ID!): String!
+    }
+    type Subscription {
+        newEvent: Event!
     }
 `;
