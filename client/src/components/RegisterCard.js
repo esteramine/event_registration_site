@@ -3,19 +3,18 @@ import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useForm } from '../utils/hooks';
+
 function RegisterCard() {
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
-    const [values, setValues] = useState({
+
+    const { onChange, onSubmit, values } = useForm(registerUser, {
         userId: '',
         name: '',
         password: '',
         confirmedPassword: ''
     });
-
-    const onChange = (event) => {
-        setValues({ ...values, [event.target.name]: event.target.value });
-    };
 
     const [addUser, { loading }] = useMutation(REGISTER_USER, {
         update(_, result) {
@@ -27,10 +26,9 @@ function RegisterCard() {
         variables: values
     });
 
-    const onSubmit = (event) => {
-        event.preventDefault();
+    function registerUser() {
         addUser();
-    };
+    }
 
     return (
         <>
