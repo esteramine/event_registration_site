@@ -1,6 +1,6 @@
 function LoginCard() {
     return (
-        <div className="bg-white w-[550px] p-4 m-2 rounded-md flex flex-col space-y-2 text-gray-700">
+        <div className="bg-white w-[550px] p-4 m-2 rounded-md flex flex-col space-y-2 text-gray-700 shadow-lg">
             <header className="font-bold text-3xl flex items-center justify-center py-2">Login</header>
 
             <div className="flex flex-col space-x-1">
