@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { AuthContext } from '../context/auth';
 import Sidebar from "../components/Sidebar";
@@ -8,9 +8,12 @@ import { useNavigate } from "react-router-dom";
 function AddEvent() {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    if (!user) {
-        navigate('/');
-    }
+    
+    useEffect(() => {
+        if (!user) {
+            navigate('/');
+        }
+    })
 
     return (
 
