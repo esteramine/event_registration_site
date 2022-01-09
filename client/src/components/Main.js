@@ -22,7 +22,7 @@ function Main() {
     // TODO: add loading progress bar 
     return (
         <div className="flex-grow bg-gray-300 p-6 h-full">
-            <header className={`flex flex-wrap ${user? "justify-end": "justify-between"} mb-3 space-x-2 items-center cursor-pointer`}>
+            <header className={`flex flex-wrap ${user ? "justify-end" : "justify-between"} mb-3 space-x-2 items-center cursor-pointer`}>
                 {user ? (<></>) : (
                     <div className="flex space-x-4 justify-center items-center text-5xl">
                         <div className="text-green-600 pt-[5px] drop-shadow-lg">
@@ -49,19 +49,21 @@ function Main() {
                 </div>
             </header>
 
-            <div className='flex flex-wrap justify-center'>
-                <>
-                {user? (
-                    <></>
-                ):(
-                    <div className="register-button px-28 h-56 m-2 text-4xl font-bold hover:shadow-lg" onClick={() => navigate('/login', { replace: true })}>
-                        <BsPlus />
-                    </div>
-                )}
-                </>
-                {loading ? (<h1>Loading Events...</h1>) : (
-                    events && events.map(event => <EventCard key={event.id} event={event} />)
-                )}
+            <div className="flex justify-center">
+                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
+                    <>
+                        {user ? (
+                            <></>
+                        ) : (
+                            <div className="register-button px-28 h-56 m-2 text-4xl font-bold hover:shadow-lg" onClick={() => navigate('/login', { replace: true })}>
+                                <BsPlus />
+                            </div>
+                        )}
+                    </>
+                    {loading ? (<h1>Loading Events...</h1>) : (
+                        events && events.map(event => <EventCard key={event.id} event={event} />)
+                    )}
+                </div>
             </div>
 
         </div>
