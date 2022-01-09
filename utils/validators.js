@@ -44,3 +44,19 @@ module.exports.validateLoginInput = (userId, password) => {
         valid: Object.keys(errors).length < 1
     };
 }
+
+module.exports.validateEventInput = (title, eventTime) => {
+    const errors = {};
+    if (title.trim() === '') {
+        errors.title = 'Title must not be empty.';
+    }
+    if (eventTime.trim() === '') {
+        errors.eventTime = 'Please pick a time for the event.';
+    }
+
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
+    };
+
+}

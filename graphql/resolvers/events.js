@@ -1,8 +1,9 @@
-const { AuthenticationError } = require('apollo-server');
+const { AuthenticationError, UserInputError } = require('apollo-server');
 const { default: ShortUniqueId } = require('short-unique-id');
 const Event = require('../../models/Event');
 const User = require('../../models/User');
 const checkAuth = require('../../utils/checkAuth');
+const { validateEventInput } = require('../../utils/validators');
 
 module.exports = {
     Query: {
@@ -33,9 +34,10 @@ module.exports = {
         async createEvent(_, { eventInput: { title, description, authCode, eventTime, restrictions } }, context) {
             const user = checkAuth(context);
             //if the server could reach here, it means the user is authenticated, and can create post
+            const { valid, errors } = validateEventInput(title, eventTime);
             const uid = new ShortUniqueId({ length: 6 });
-            if (title.trim() === '') {
-                throw new Error('Event title must not be empty');
+            if (!valid) {
+                throw new UserInputError('Errors', { errors });
             }
             const newEvent = new Event({
                 title,
