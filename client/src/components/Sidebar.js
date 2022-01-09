@@ -23,7 +23,7 @@ function Sidebar() {
     const { logout } = useContext(AuthContext);
 
     return (
-        <div className=" h-screen p-2 flex flex-col bg-white shadow-2xl z-10"> 
+        <div className="fixed top-0 left-0 h-screen p-2 flex flex-col bg-white shadow-2xl"> 
             {/* fixed top-0 left-0 */}
             <SidebarIcon icon={ <AiFillHome size="24" />} text='Home' onClick={() => navigate('/', { replace: true })}/>
             <Divider />

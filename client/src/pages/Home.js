@@ -7,7 +7,7 @@ function Home() {
     const { user } = useContext(AuthContext);
 
     return (
-        <>
+        <div className="h-full">
             {
                 user ? (
                     <div className="flex">
@@ -16,7 +16,7 @@ function Home() {
                     </div>
                 ): (<Main />) 
             }
-        </>
+        </div>
 
     )
 }
