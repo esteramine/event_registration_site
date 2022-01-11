@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from '../utils/hooks';
+import { FETCH_EVENTS_QUERY } from '../utils/graphql';
 
 function EventForm() {
     const navigate = useNavigate();
@@ -19,7 +20,12 @@ function EventForm() {
     });
 
     const [addEvent, { loading }] = useMutation(CREATE_EVENT, {
-        update(_, result) {
+        update(proxy, result) {
+            const data = proxy.readQuery({
+                query: FETCH_EVENTS_QUERY
+            });
+            const newData = [result.data.createEvent, ...data.getEvents];
+            proxy.writeQuery({ query: FETCH_EVENTS_QUERY, data: { getEvents: newData } });
             navigate('/');
         },
         onError(err) {
@@ -119,6 +125,15 @@ const CREATE_EVENT = gql`
             title
             description
             eventCode
+            eventTime
+            createdAt
+            organizer {
+                userId
+                name
+            }
+            restrictions
+            participantCount
+
             
         }
     }

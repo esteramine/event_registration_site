@@ -7,6 +7,7 @@ import EventCard from "./EventCard";
 import Searchbar from "./Searchbar";
 import { AuthContext } from '../context/auth';
 import { useNavigate } from "react-router-dom";
+import { FETCH_EVENTS_QUERY } from "../utils/graphql";
 
 
 function Main() {
@@ -69,25 +70,5 @@ function Main() {
         </div>
     )
 }
-
-const FETCH_EVENTS_QUERY = gql` 
-{
-    getEvents {
-        id
-        title
-        description
-        eventCode
-        eventTime
-        createdAt
-        organizer {
-            userId
-            name
-        }
-        restrictions
-        participantCount
-    }
-}
-    
-`
 
 export default Main;

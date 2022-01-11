@@ -21,7 +21,7 @@ function AddEvent() {
         <div className="flex">
             <Sidebar />
 
-            <div className="bg-gray-300 h-screen flex-grow p-6">
+            <div className={`bg-gray-300 h-screen flex-grow p-6 ${ user? 'pl-20': 'pl-6'}`}>
                 <EventForm />
             </div>
         </div>
