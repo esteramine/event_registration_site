@@ -2,6 +2,10 @@ import gql from "graphql-tag";
 import { useMutation } from '@apollo/client';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 
 import { useForm } from '../utils/hooks';
 import { FETCH_EVENTS_QUERY } from '../utils/graphql';
@@ -11,12 +15,12 @@ function EventForm() {
     const [errors, setErrors] = useState({});
     const [restrictions, setRestrictions] = useState([]);
     const [requiredAuthCode, setRequiredAuthCode] = useState(false);
+    const [timeValue, setTimeValue] = useState(new Date());
 
     const { onChange, onSubmit, values } = useForm(createEvent, {
         title: '',
         description: '',
         authCode: '',
-        eventTime: '',
     });
 
     const [addEvent, { loading }] = useMutation(CREATE_EVENT, {
@@ -32,7 +36,7 @@ function EventForm() {
             console.log(err);
             setErrors(err.graphQLErrors[0].extensions.exception.errors);
         },
-        variables: values
+        variables: { ...values, eventTime: timeValue }
     });
 
     function createEvent() {
@@ -56,11 +60,25 @@ function EventForm() {
                     <input name="description" type="text" className="register-input" onChange={onChange} />
                 </div>
 
-                <div className="flex flex-col space-x-1">
+                <div className="flex flex-col space-x-1 mt-1">
                     <div className="flex space-x-2 p-2">
                         <div className="font-bold font-sm">EVENT TIME*</div>
                     </div>
-                    <input name="eventTime" type="text" className={errors.eventTime ? "register-input-error" : "register-input"} onChange={onChange} />
+                    {/* <input name="eventTime" type="text" className={errors.eventTime ? "register-input-error" : "register-input"} onChange={onChange} /> */}
+                </div>
+
+                <div className="my-3">
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DateTimePicker
+                            renderInput={(props) => <TextField {...props} />}
+                            label="DateTimePicker"
+                            value={timeValue}
+                            minDateTime={new Date()}
+                            onChange={(newValue) => {
+                                setTimeValue(newValue.toUTCString());
+                            }}
+                        />
+                    </LocalizationProvider>
                 </div>
 
                 <div className="flex flex-col space-x-1">
